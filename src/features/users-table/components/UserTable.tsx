@@ -2,8 +2,8 @@ import React from 'react';
 import { flexRender } from '@tanstack/react-table';
 import type { TableColumn } from '@store/types';
 import type { User } from '@features/users-table/types';
-import { useTableColumns } from './TableColumns';
 import { useTable } from '../hooks/useTable';
+import { useTableColumns } from './TableColumns';
 import TableStatus from './TableStatus';
 
 interface UserTableProps {

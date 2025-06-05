@@ -2,10 +2,10 @@ import React from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { TableColumn } from '@store/types';
 import type { User } from '../types';
+import { TABLE_COLUMN_META } from '../constants';
 import UserTableCell from './UserTableCell';
 import { TableHeader, SettingsHeader } from './TableHeader';
 import { SettingsCell } from './SettingsCell';
-import { TABLE_COLUMN_META } from '../constants';
 
 export function useTableColumns(visibleColumns: TableColumn[]): ColumnDef<User, any>[] {
   return React.useMemo(() => [
