@@ -11,11 +11,15 @@ interface UserTableProps {
   visibleColumns: TableColumn[];
   isLoading: boolean;
   error: unknown;
+  selectedRowId?: string | number;
+  onRowSelect?: (user: User) => void;
 }
 
 const MIN_TABLE_HEIGHT = 300;
 
-const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading, error }) => {
+const SETTINGS_WIDTH = 34;
+
+const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading, error, selectedRowId, onRowSelect }) => {
   const columns = useTableColumns(visibleColumns);
   const table = useTable(users, columns);
 
@@ -31,39 +35,70 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
   }
 
   return (
-    <div className="flex-1 min-h-0 overflow-y-auto">
-      <table className="min-w-full border-separate border-spacing-0">
-        <thead className="bg-gray-50 sticky top-0 z-10" style={{ height: 28 }}>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th
-                  key={header.id}
-                  style={{ width: header.getSize(), maxWidth: header.getSize(), minWidth: header.getSize(), height: 28, ...(header.id === 'settings' ? { position: 'sticky', right: 0, zIndex: 30, background: '#f9fafb' } : {}) }}
-                  className={`px-0 py-0 text-left text-xs font-semibold text-gray-500 border-b align-middle ${header.id === 'settings' ? 'sticky right-0 z-30 bg-gray-50' : 'bg-gray-50'}`}
+    <div className="flex-1 min-h-0 overflow-y-auto rounded-xl bg-white shadow-sm">
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-separate border-spacing-0 rounded-xl overflow-hidden">
+          <thead className="bg-[#F7F7F8] sticky top-0 z-10 h-[28px]">
+            {table.getHeaderGroups().map(headerGroup => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map(header => (
+                  header.id === 'settings' ? (
+                    <th
+                      key={header.id}
+                      style={{ width: SETTINGS_WIDTH, minWidth: SETTINGS_WIDTH, maxWidth: SETTINGS_WIDTH, height: 28, right: 0, top: 0 }}
+                      className="sticky right-0 top-0 z-30 bg-[#F7F7F8] px-2 py-2 border-b border-[#EAEDF0] align-middle"
+                      scope="col"
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
+                  ) : (
+                    <th
+                      key={header.id}
+                      style={{ width: header.getSize(), maxWidth: header.getSize(), minWidth: header.getSize(), height: 28 }}
+                      className="px-4 py-2 text-left text-xs font-semibold text-[#5F6E7C] border-b border-[#EAEDF0] align-middle uppercase tracking-wider bg-[#F7F7F8]"
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
+                  )
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map(row => {
+              const isSelected = selectedRowId === row.original?.id;
+              return (
+                <tr
+                  key={row.id}
+                  className={`h-[56px] group ${isSelected ? 'bg-[#F7F7F8] border-l-2 border-[#5F6E7C]' : 'hover:bg-gray-50'} transition-colors`}
+                  onClick={onRowSelect ? () => onRowSelect(row.original) : undefined}
+                  style={isSelected ? { borderLeftWidth: 2, borderLeftColor: '#5F6E7C' } : {}}
                 >
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody className="align-middle">
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td
-                  key={cell.id}
-                  style={{ width: cell.column.getSize(), maxWidth: cell.column.getSize(), minWidth: cell.column.getSize(), ...(cell.column.id === 'settings' ? { position: 'sticky', right: 0, zIndex: 20, background: '#fff' } : {}) }}
-                  className={`px-0 py-0 border-b whitespace-nowrap h-[56px] align-middle break-words text-left truncate ${cell.column.id === 'settings' ? 'sticky right-0 z-20 bg-white' : ''}`}
-                >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  {row.getVisibleCells().map((cell, idx, arr) => (
+                    cell.column.id === 'settings' && idx === arr.length - 1 ? (
+                      <td
+                        key={cell.id}
+                        style={{ width: SETTINGS_WIDTH, minWidth: SETTINGS_WIDTH, maxWidth: SETTINGS_WIDTH, right: 0 }}
+                        className="sticky right-0 z-20 bg-white px-2 py-0 border-b border-[#EAEDF0] h-[56px] align-middle"
+                      >
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    ) : (
+                      <td
+                        key={cell.id}
+                        style={{ width: cell.column.getSize(), maxWidth: cell.column.getSize(), minWidth: cell.column.getSize() }}
+                        className="px-4 py-0 border-b border-[#EAEDF0] whitespace-nowrap h-[56px] align-middle break-words text-left truncate"
+                      >
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    )
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

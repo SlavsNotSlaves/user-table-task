@@ -6,6 +6,10 @@ interface TableHeaderProps {
   width: number;
 }
 
+interface SettingsHeaderProps {
+  width: number;
+}
+
 export const TableHeader: React.FC<TableHeaderProps> = ({ label, width }) => (
   <div 
     style={{ width, maxWidth: width, minWidth: width, height: 28 }} 
@@ -15,15 +19,12 @@ export const TableHeader: React.FC<TableHeaderProps> = ({ label, width }) => (
   </div>
 );
 
-interface SettingsHeaderProps {
-  width: number;
-}
-
 export const SettingsHeader: React.FC<SettingsHeaderProps> = ({ width }) => (
-  <div 
-    className="sticky right-0 bg-gray-50 z-30 px-2 py-2 border-b align-middle" 
+  <th
+    className="sticky right-0 top-0 z-30 bg-[#F7F7F8] px-2 py-2 border-b align-middle"
     style={{ right: 0, top: 0, width, minWidth: width, maxWidth: width, height: 28 }}
+    scope="col"
   >
     <TableSettingsButton />
-  </div>
+  </th>
 ); 
