@@ -3,5 +3,5 @@
 @tailwind components;
 @tailwind utilities;
 
-body { overflow-y: hidden !important; }
+/* body { overflow-y: hidden !important; } */
 /* TODO: FIX LAYOUT TO REMOVE SCROLLBAR*/
