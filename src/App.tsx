@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useTableSettingsStore } from './store';
+import { fetchUsers } from './features/users-table/api';
+import type { UsersApiResponse } from './features/users-table/types';
+import UserSearch from './components/UserSearch';
+import Layout from './components/Layout';
+import { UserTable, Pagination } from './features/users-table/components';
+import { useDebounce } from './hooks/useDebounce';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 300);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const { visibleColumns, restore } = useTableSettingsStore();
+
+  useEffect(() => {
+    restore();
+    // eslint-disable-next-line
+  }, []);
+
+  const { data, isLoading, error } = useQuery<UsersApiResponse>({
+    queryKey: ['users', { search: debouncedSearch, page, limit }],
+    queryFn: () => fetchUsers({ search: debouncedSearch, limit, skip: (page - 1) * limit }),
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Layout>
+      <div className="bg-white rounded-lg shadow p-4 mt-4 flex flex-col flex-1 min-h-0">
+        <UserSearch value={search} onChange={setSearch} />
+        <UserTable
+          users={data?.users || []}
+          visibleColumns={visibleColumns}
+          isLoading={isLoading}
+          error={error}
+        />
+        <div className="pt-4 flex-shrink-0">
+          <Pagination
+            page={page}
+            setPage={setPage}
+            limit={limit}
+            setLimit={setLimit}
+            total={data?.total || 0}
+          />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Layout>
+  );
 }
 
-export default App
+export default App;
