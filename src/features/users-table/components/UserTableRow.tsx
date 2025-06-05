@@ -1,6 +1,6 @@
 import React from 'react';
-import type { User } from '../../../features/users-table/types';
-import type { TableColumn } from '../../../store/types';
+import type { User } from '@features/users-table/types';
+import type { TableColumn } from '@store/types';
 import UserTableCell from './UserTableCell';
 
 interface UserTableRowProps {

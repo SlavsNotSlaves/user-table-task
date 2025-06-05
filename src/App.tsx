@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useTableSettingsStore } from './store';
-import { fetchUsers } from './features/users-table/api';
-import type { UsersApiResponse } from './features/users-table/types';
-import UserSearch from './components/UserSearch';
-import Layout from './components/Layout';
-import { UserTable, Pagination } from './features/users-table/components';
-import { useDebounce } from './hooks/useDebounce';
+import { useTableSettingsStore } from '@store';
+import { fetchUsers } from '@features/users-table/api';
+import type { UsersApiResponse } from '@features/users-table/types';
+import UserSearch from '@components/UserSearch';
+import Layout from '@components/Layout';
+import { UserTable, Pagination } from '@features/users-table/components';
+import { useDebounce } from '@hooks/useDebounce';
 
 function App() {
   const [search, setSearch] = useState('');

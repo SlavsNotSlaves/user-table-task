@@ -1,6 +1,6 @@
 import React from 'react';
-import { TableSettingsButton } from '../../table-settings/components';
-import type { TableColumn } from '../../../store/types';
+import { TableSettingsButton } from '@features/table-settings/components';
+import type { TableColumn } from '@store/types';
 
 interface UserTableHeaderProps {
   visibleColumns: TableColumn[];

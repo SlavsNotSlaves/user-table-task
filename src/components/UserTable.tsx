@@ -1,8 +1,8 @@
 import React from 'react';
-import UserTableHeader from './UserTableHeader';
-import UserTableRow from './UserTableRow';
-import type { TableColumn } from '../store/types';
-import type { User } from '../features/users-table/types';
+
+import type { TableColumn } from '@store/types';
+import type { User } from '@features/users-table/types';
+import { UserTableHeader, UserTableRow } from '@features/users-table/components';
 
 interface UserTableProps {
   users: User[];
