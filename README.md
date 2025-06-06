@@ -102,4 +102,4 @@ The application follows WCAG 2.1 guidelines and includes:
 
 ## Live Demo
 
-[Link to deployed application will be added here]
+https://slavsnotslaves.github.io/user-table-task/
