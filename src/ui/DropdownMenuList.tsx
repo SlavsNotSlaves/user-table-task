@@ -1,6 +1,7 @@
 import React from 'react';
 import { SearchInput } from './SearchInput';
 import { IconSingleChoice } from './icons/IconSingleChoice';
+import * as Checkbox from '@radix-ui/react-checkbox';
 
 export interface DropdownMenuListItem {
   key: string;
@@ -54,19 +55,23 @@ export const DropdownMenuList: React.FC<DropdownMenuListProps> = ({
           onClick={() => !item.disabled && onToggle(item.key, !item.checked)}
         >
           <span className="truncate" style={{width: 152}}>{item.label}</span>
-          <span
+          <Checkbox.Root
+            checked={item.checked}
+            disabled={item.disabled}
+            onCheckedChange={() => !item.disabled && onToggle(item.key, !item.checked)}
             className={[
-              'flex items-center justify-center ml-2',
+              'flex items-center justify-center ml-2 p-0 bg-transparent border-none outline-none shadow-none',
               item.checked ? '' : 'opacity-0',
               item.disabled ? 'opacity-50' : ''
             ].join(' ')}
-            aria-hidden="true"
+            tabIndex={-1}
+            aria-label={item.label}
             style={{ width: 20, height: 20 }}
           >
-            {item.checked && (
+            <Checkbox.Indicator forceMount>
               <IconSingleChoice size={20} color="#2563eb" />
-            )}
-          </span>
+            </Checkbox.Indicator>
+          </Checkbox.Root>
         </li>
       ))}
     </ul>
