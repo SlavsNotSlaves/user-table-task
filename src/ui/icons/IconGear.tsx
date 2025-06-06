@@ -20,4 +20,4 @@ export const IconGear = ({
       fill={color}
     />
   </svg>
-); 
+);

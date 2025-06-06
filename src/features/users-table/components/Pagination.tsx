@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as Select from "@radix-ui/react-select";
-import { IconCaret, IconTriangleDown, IconTriangleUp } from "@/ui/icons";
+import * as React from 'react';
+import * as Select from '@radix-ui/react-select';
+import { IconCaret, IconTriangleDown, IconTriangleUp } from '@/ui/icons';
 import { IconButton } from '@/ui';
 
 interface PaginationProps {
@@ -19,14 +19,13 @@ const SelectItem = React.forwardRef<
 >(({ children, className, ...props }, ref) => (
   <Select.Item
     className={
-      "flex items-center px-2 h-[36px] text-[13px] font-plex-sans text-[#202932] cursor-pointer rounded-[8px] data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600 data-[highlighted]:bg-[#F5F7FA] data-[disabled]:text-gray-300 data-[disabled]:cursor-not-allowed outline-none select-none"
+      'flex items-center px-2 h-[36px] text-[13px] font-plex-sans text-[#202932] cursor-pointer rounded-[8px] data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600 data-[highlighted]:bg-[#F5F7FA] data-[disabled]:text-gray-300 data-[disabled]:cursor-not-allowed outline-none select-none'
     }
     {...props}
     ref={ref}
   >
     <Select.ItemText>{children}</Select.ItemText>
-    <Select.ItemIndicator className="ml-auto">
-    </Select.ItemIndicator>
+    <Select.ItemIndicator className="ml-auto"></Select.ItemIndicator>
   </Select.Item>
 ));
 
@@ -41,7 +40,7 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <footer className="w-full flex justify-between items-center bg-white border border-[#EAEDF0] border-t-0 rounded-b-[8px] px-7 py-7" >
+    <footer className="w-full flex justify-between items-center bg-white border border-[#EAEDF0] border-t-0 rounded-b-[8px] px-7 py-7">
       {/* Items per page */}
       <div className="flex items-center justify-between gap-4" style={{ padding: '8px' }}>
         <div className="relative" style={{ marginRight: '10px' }}>
@@ -90,7 +89,7 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
             </Select.Portal>
           </Select.Root>
         </div>
-        <div >
+        <div>
           <span className="text-xs text-[#6B7280] font-semibold uppercase tracking-wide text-[10px]">
             Items per page
           </span>
@@ -100,18 +99,19 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
       {/* Range info */}
       <div className="text-xs text-[#6B7280] font-semibold font-plex-sans uppercase  text-[10px]">
         {total === 0
-          ? "0"
+          ? '0'
           : `${(page - 1) * limit + 1} - ${Math.min(page * limit, total)} of ${total}`}
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center gap-2"  style={{ padding: '8px' }}>
-        <IconButton
-          onClick={() => setPage(1)}
-          disabled={page === 1}
-          aria-label="First page"
-        >
-          <IconCaret direction="left" variant="line" size={20} className=" text-[#6B7280] transition-colors" />
+      <div className="flex items-center gap-2" style={{ padding: '8px' }}>
+        <IconButton onClick={() => setPage(1)} disabled={page === 1} aria-label="First page">
+          <IconCaret
+            direction="left"
+            variant="line"
+            size={20}
+            className=" text-[#6B7280] transition-colors"
+          />
         </IconButton>
         <IconButton
           onClick={() => setPage(page - 1)}
@@ -145,7 +145,12 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
           disabled={page >= pageCount}
           aria-label="Last page"
         >
-          <IconCaret direction="right" variant="line" size={20} className=" text-[#6B7280] transition-colors" />
+          <IconCaret
+            direction="right"
+            variant="line"
+            size={20}
+            className=" text-[#6B7280] transition-colors"
+          />
         </IconButton>
       </div>
     </footer>

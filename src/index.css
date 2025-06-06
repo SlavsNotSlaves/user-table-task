@@ -3,11 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html {
+body,
+html {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-body { overflow-y: hidden !important; }
+body {
+  overflow-y: hidden !important;
+}
 
 /* Custom scrollbars for all scrollable elements */
 ::-webkit-scrollbar {
@@ -16,7 +19,7 @@ body { overflow-y: hidden !important; }
   background: transparent;
 }
 ::-webkit-scrollbar-track {
-  background: #DFDFDF;
+  background: #dfdfdf;
   border-radius: 100px;
 }
 ::-webkit-scrollbar-thumb {
@@ -25,7 +28,7 @@ body { overflow-y: hidden !important; }
   border: none;
 }
 ::-webkit-scrollbar-corner {
-  background: #DFDFDF !important;
+  background: #dfdfdf !important;
   border-radius: 100px;
   width: 4px;
   height: 4px;
@@ -38,7 +41,7 @@ body { overflow-y: hidden !important; }
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #202932 #DFDFDF;
+  scrollbar-color: #202932 #dfdfdf;
 }
 ::-webkit-scrollbar-button {
   display: none;
