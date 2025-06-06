@@ -3,6 +3,7 @@ import type { TableColumn } from '@store/types';
 import type { User } from '@features/users-table/types';
 import TableStatus from './TableStatus';
 import { TableSettingsButton } from '@/features/table-settings/components';
+import { IconMale, IconFemale } from '@/ui/icons';
 
 interface UserTableProps {
   users: User[];
@@ -48,7 +49,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
   }
 
   return (
-    <div style={{ height: 560, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8  }}>
+    <div style={{ height: 560, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8, marginTop: 12 }}>
       <table style={{ minWidth: 900, borderCollapse: 'separate' }} className="min-w-full">
         <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
           <tr>
@@ -59,10 +60,25 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
                   position: idx === 0 ? 'sticky' : 'static',
                   left: idx === 0 ? 0 : undefined,
                   top: 0,
-                  background: '#f7f7f8',
+                  background: idx === 0 ? '#f7f7f8' : undefined,
                   zIndex: idx === 0 ? 11 : 10,
+                  fontFamily: 'IBM Plex Sans, sans-serif',
+                  fontWeight: 600,
+                  fontSize: 10,
+                  lineHeight: '12px',
+                  letterSpacing: 0.2,
+                  color: '#5F6E7C',
+                  textTransform: 'uppercase',
+                  verticalAlign: 'middle',
+                  borderBottom: '1px solid #EAEDF0',
+                  borderRight: idx !== visibleColumns.length - 1 ? '1px solid #EAEDF0' : undefined,
+                  padding: '0 8px',
+                  height: 28,
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
                 }}
-                className="px-4 py-2 border-b align-middle text-xs font-semibold text-gray-500 text-left bg-[#f7f7f8]"
+                className="align-middle text-xs font-semibold text-left bg-[#f7f7f8]"
               >
                 {COLUMN_LABELS[col]}
               </th>
@@ -76,8 +92,23 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
                 zIndex: 12,
                 maxWidth: 34,
                 width: 34,
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontWeight: 600,
+                fontSize: 10,
+                lineHeight: '12px',
+                letterSpacing: 0.2,
+                color: '#5F6E7C',
+                textTransform: 'uppercase',
+                verticalAlign: 'middle',
+                borderBottom: '1px solid #EAEDF0',
+                borderRight: '1px solid #EAEDF0',
+                padding: '0 8px',
+                height: 28,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
-              className="px-4 py-2 border-b align-middle text-xs font-semibold text-gray-500 text-left bg-[#f7f7f8]"
+              className="align-middle text-xs font-semibold text-left bg-[#f7f7f8]"
             >
               <TableSettingsButton />
             </th>
@@ -94,8 +125,23 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
                     left: idx === 0 ? 0 : undefined,
                     background: idx === 0 ? '#fff' : undefined,
                     zIndex: idx === 0 ? 2 : 1,
+                    fontFamily: 'IBM Plex Sans, sans-serif',
+                    fontWeight: 400,
+                    fontSize: 13,
+                    lineHeight: '20px',
+                    color: '#1F1E1D',
+                    verticalAlign: 'middle',
+                    letterSpacing: 0,
+                    padding: '0 8px',
+                    height: 56,
+                    maxWidth: 220,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    borderBottom: '1px solid #EAEDF0',
+                    borderRight: idx !== visibleColumns.length - 1 ? '1px solid #EAEDF0' : undefined,
                   }}
-                  className="px-4 py-2 border-b align-middle text-left truncate"
+                  className="align-middle text-left truncate"
                 >
                   {renderUserCell(user, col)}
                 </td>
@@ -126,35 +172,62 @@ function renderUserCell(user: User, col: TableColumn) {
     case 'birthDate':
       return user.birthDate;
     case 'gender':
-      return user.gender;
+      return (
+        <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {user.gender === 'male' ? (
+            <IconMale size={20} style={{ color: '#1F1E1D' }} />
+          ) : (
+            <IconFemale size={20} style={{ color: '#1F1E1D' }} />
+          )}
+          <span style={{ textTransform: 'capitalize' }}>{user.gender}</span>
+        </span>
+      );
     case 'email':
-      return user.email;
     case 'phone':
-      return user.phone;
     case 'username':
-      return user.username;
     case 'generalInfo':
-      return `Bloodgroup "${user.bloodGroup}"; Height ${user.height}; Weight ${user.weight}; Hair color ${user.hair.color}`;
     case 'domain':
-      return user.email ? user.email.split('@')[1] : '';
     case 'ip':
-      return user.ip;
     case 'macIp':
-      return user.macAddress;
     case 'address':
-      return user.address ? `${user.address.address}, ${user.address.city}, ${user.address.state} ${user.address.postalCode}` : '';
     case 'bank':
-      return user.bank?.cardType || '';
     case 'university':
-      return user.university;
     case 'company':
-      return user.company?.name || '';
     case 'ein':
-      return user.ein;
     case 'ssn':
-      return user.ssn;
-    default:
-      return '';
+      return (
+        <span style={{
+          color: '#1F1E1D',
+          fontFamily: 'IBM Plex Sans, sans-serif',
+          fontWeight: 400,
+          fontSize: 13,
+          lineHeight: '20px',
+          letterSpacing: 0,
+          verticalAlign: 'middle',
+          display: 'inline-block',
+        }}>
+          {
+            col === 'generalInfo'
+              ? `Bloodgroup "${user.bloodGroup}"; Height ${user.height}; Weight ${user.weight}; Hair color ${user.hair.color}`
+              : col === 'domain'
+                ? (user.email ? user.email.split('@')[1] : '')
+                : col === 'address'
+                  ? (user.address ? `${user.address.address}, ${user.address.city}, ${user.address.state} ${user.address.postalCode}` : '')
+                  : col === 'bank'
+                    ? (user.bank?.cardType || '')
+                    : col === 'company'
+                      ? (user.company?.name || '')
+                      : col === 'macIp'
+                        ? (user.macAddress || '')
+                        : (user[col as keyof User] as string)
+          }
+        </span>
+      );
+    default: {
+      // Безопасно получаем значение поля, если оно есть в user
+      const value = Object.prototype.hasOwnProperty.call(user, col) ? (user as any)[col] : '';
+      return value || '-';
+    }
   }
 }
 

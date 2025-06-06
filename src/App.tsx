@@ -27,7 +27,7 @@ function App() {
 
   return (
     <Layout>
-      <div className="bg-white rounded-lg shadow p-4 mt-4 flex flex-col flex-1 min-h-0">
+      <div className="bg-white rounded-lg shadow p-4 flex flex-col flex-1 min-h-0" >
         <UserSearch value={search} onChange={setSearch} />
         <UserTable
           users={data?.users || []}

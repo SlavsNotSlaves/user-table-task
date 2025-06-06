@@ -3,5 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body, html {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
 /* body { overflow-y: hidden !important; } */
 /* TODO: FIX LAYOUT TO REMOVE SCROLLBAR*/
