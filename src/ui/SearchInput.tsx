@@ -22,7 +22,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   ...rest
 }) => (
   <div className={clsx('w-full', className)}>
-    <div className="relative w-full">
+    <div className="relative w-full" style={{ outline: 'none' }}>
       <span
         className="absolute flex items-center justify-center pointer-events-none"
         style={{ left: 12, top: '50%', transform: 'translateY(-50%)', width: 20, height: 20, color: '#5F6E7C' }}
@@ -36,11 +36,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         placeholder={placeholder}
         disabled={disabled}
         className={clsx(
-          'w-full h-9 pr-3 rounded-[8px] border border-[#EAEDF0] bg-[#F9FAFB] text-[15px] leading-[20px] font-plex font-normal placeholder:text-[#5F6E7C] placeholder:font-plex placeholder:font-normal placeholder:text-[13px] placeholder:leading-[20px] focus:outline-none focus:ring-2 focus:ring-blue-200 transition-shadow',
+          'w-full h-9 pr-3 rounded-[8px] border bg-[#F9FAFB] text-[15px] leading-[20px] font-plex font-normal placeholder:text-[#5F6E7C] placeholder:font-plex placeholder:font-normal placeholder:text-[13px] placeholder:leading-[20px] transition-shadow',
           disabled && 'opacity-60 cursor-not-allowed',
-          error && 'border-[#E40808] text-[#E40808] placeholder-[#E40808]'
+          error
+            ? 'border-[#E40808] text-[#E40808] placeholder-[#E40808] focus:ring-2 focus:ring-[#E40808]'
+            : 'border-[#EAEDF0] text-[#202932] focus:ring-2 focus:ring-[#005CB2]'
         )}
-        style={{ height: 36, paddingLeft: 40, boxSizing: 'border-box' }}
+        style={{ height: 36, paddingLeft: 40, boxSizing: 'border-box', outline: 'none', }}
         {...rest}
       />
     </div>

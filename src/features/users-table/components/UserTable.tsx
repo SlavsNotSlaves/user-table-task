@@ -4,6 +4,7 @@ import type { User } from '@features/users-table/types';
 import TableStatus from './TableStatus';
 import { TableSettingsButton } from '@/features/table-settings/components';
 import { IconMale, IconFemale } from '@/ui/icons';
+import Link from '@/ui/Link';
 
 interface UserTableProps {
   users: User[];
@@ -34,7 +35,7 @@ const COLUMN_LABELS: Record<TableColumn, string> = {
 const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading, error }) => {
   if (isLoading || error) {
     return (
-      <div className="min-h-0 flex items-center justify-center" style={{ height: 560 }}>
+      <div className="min-h-0 flex items-center justify-center" style={{ height: 574 }}>
         <TableStatus status={isLoading ? 'loading' : 'error'} colSpan={visibleColumns.length} />
       </div>
     );
@@ -42,7 +43,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
 
   if (users.length === 0) {
     return (
-      <div className="min-h-0 flex items-center justify-center" style={{ height: 560 }}>
+      <div className="min-h-0 flex items-center justify-center" style={{ height: 574 }}>
         <TableStatus status="empty" colSpan={visibleColumns.length} />
       </div>
     );
@@ -210,7 +211,7 @@ function renderUserCell(user: User, col: TableColumn) {
             col === 'generalInfo'
               ? `Bloodgroup "${user.bloodGroup}"; Height ${user.height}; Weight ${user.weight}; Hair color ${user.hair.color}`
               : col === 'domain'
-                ? (user.email ? user.email.split('@')[1] : '')
+                ? <Link domain={user.email ? user.email.split('@')[1] : ''} />
                 : col === 'address'
                   ? (user.address ? `${user.address.address}, ${user.address.city}, ${user.address.state} ${user.address.postalCode}` : '')
                   : col === 'bank'
@@ -224,7 +225,6 @@ function renderUserCell(user: User, col: TableColumn) {
         </span>
       );
     default: {
-      // Безопасно получаем значение поля, если оно есть в user
       const value = Object.prototype.hasOwnProperty.call(user, col) ? (user as any)[col] : '';
       return value || '-';
     }

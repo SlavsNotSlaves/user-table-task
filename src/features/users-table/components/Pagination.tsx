@@ -26,7 +26,6 @@ const SelectItem = React.forwardRef<
   >
     <Select.ItemText>{children}</Select.ItemText>
     <Select.ItemIndicator className="ml-auto">
-      {/* Можно добавить галочку или оставить пусто */}
     </Select.ItemIndicator>
   </Select.Item>
 ));
@@ -42,9 +41,9 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <footer className="w-full flex justify-between items-center border-t border-[#EAEDF0] px-6 py-4 bg-white">
+    <footer className="w-full flex justify-between items-center bg-white border border-[#EAEDF0] border-t-0 rounded-b-[8px] px-7 py-7" >
       {/* Items per page */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4" style={{ padding: '8px' }}>
         <div className="relative" style={{ marginRight: '10px' }}>
           <Select.Root
             value={String(limit)}
@@ -92,21 +91,21 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
           </Select.Root>
         </div>
         <div >
-          <span className="text-xs text-[#6B7280] font-medium uppercase tracking-wide">
-          Items per page
-        </span>
+          <span className="text-xs text-[#6B7280] font-semibold uppercase tracking-wide text-[10px]">
+            Items per page
+          </span>
         </div>
       </div>
 
       {/* Range info */}
-      <div className="text-xs text-[#6B7280] font-semibold font-plex-sans uppercase">
+      <div className="text-xs text-[#6B7280] font-semibold font-plex-sans uppercase  text-[10px]">
         {total === 0
           ? "0"
           : `${(page - 1) * limit + 1} - ${Math.min(page * limit, total)} of ${total}`}
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2"  style={{ padding: '8px' }}>
         <IconButton
           onClick={() => setPage(1)}
           disabled={page === 1}
