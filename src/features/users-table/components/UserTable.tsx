@@ -157,7 +157,7 @@ function renderUserCell(user: User, col: TableColumn) {
   switch (col) {
     case 'fullName':
       return (
-        <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 500 }}>
           {user.image && (
             <img
               src={user.image}
