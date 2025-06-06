@@ -1,3 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body, html {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body { overflow-y: hidden !important; }
+
+/* Custom scrollbars for all scrollable elements */
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: #DFDFDF;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+  background: #202932;
+  border-radius: 100px;
+  border: none;
+}
+::-webkit-scrollbar-corner {
+  background: #DFDFDF !important;
+  border-radius: 100px;
+  width: 4px;
+  height: 4px;
+  min-width: 4px;
+  min-height: 4px;
+  max-width: 4px;
+  max-height: 4px;
+  display: block !important;
+}
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #202932 #DFDFDF;
+}
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+::-webkit-scrollbar-button:single-button {
+  display: none;
+  background-color: transparent;
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-button {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  background: transparent !important;
+}
+::-webkit-scrollbar-button:single-button {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}

@@ -1,3 +1,5 @@
+import { SearchInput } from '@/ui';
+
 interface UserSearchProps {
   value: string;
   onChange: (value: string) => void;
@@ -5,14 +7,15 @@ interface UserSearchProps {
 
 const UserSearch = ({ value, onChange }: UserSearchProps) => {
   return (
-    <div className="w-full flex justify-center py-4">
-      <input
-        type="text"
-        placeholder="Search users..."
-        className="border rounded px-3 py-2 w-80"
+    <div className="w-full py-4 mt-32" style={{marginTop: '32px'}}>
+      <SearchInput
         value={value}
-        onChange={e => onChange(e.target.value)}
-        aria-label="Search users"
+        onChange={v => {
+          onChange(v);
+        }}
+        placeholder="Search..."
+        aria-label="Search"
+        className="w-full"
       />
     </div>
   );
