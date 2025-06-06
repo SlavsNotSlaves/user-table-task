@@ -5,7 +5,7 @@ const rootRoute = new RootRoute();
 
 const homeRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/',
+  path: '/user-table-task/',
   component: App,
 });
 
