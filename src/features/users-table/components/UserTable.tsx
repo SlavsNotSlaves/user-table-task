@@ -39,6 +39,14 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
     );
   }
 
+  if (users.length === 0) {
+    return (
+      <div className="min-h-0 flex items-center justify-center" style={{ height: 560 }}>
+        <TableStatus status="empty" colSpan={visibleColumns.length} />
+      </div>
+    );
+  }
+
   return (
     <div style={{ height: 560, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8  }}>
       <table style={{ minWidth: 900, borderCollapse: 'separate' }} className="min-w-full">
@@ -71,38 +79,29 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
               }}
               className="px-4 py-2 border-b align-middle text-xs font-semibold text-gray-500 text-left bg-[#f7f7f8]"
             >
-
               <TableSettingsButton />
             </th>
           </tr>
         </thead>
         <tbody>
-          {users.length === 0 ? (
-            <tr>
-              <td colSpan={visibleColumns.length + 1} className="text-center py-10 text-gray-400">
-                No data
-              </td>
+          {users.map((user) => (
+            <tr key={user.id} className="h-[56px] hover:bg-gray-50">
+              {visibleColumns.map((col, idx) => (
+                <td
+                  key={col}
+                  style={{
+                    position: idx === 0 ? 'sticky' : 'static',
+                    left: idx === 0 ? 0 : undefined,
+                    background: idx === 0 ? '#fff' : undefined,
+                    zIndex: idx === 0 ? 2 : 1,
+                  }}
+                  className="px-4 py-2 border-b align-middle text-left truncate"
+                >
+                  {renderUserCell(user, col)}
+                </td>
+              ))}
             </tr>
-          ) : (
-            users.map((user) => (
-              <tr key={user.id} className="h-[56px] hover:bg-gray-50">
-                {visibleColumns.map((col, idx) => (
-                  <td
-                    key={col}
-                    style={{
-                      position: idx === 0 ? 'sticky' : 'static',
-                      left: idx === 0 ? 0 : undefined,
-                      background: idx === 0 ? '#fff' : undefined,
-                      zIndex: idx === 0 ? 2 : 1,
-                    }}
-                    className="px-4 py-2 border-b align-middle text-left truncate"
-                  >
-                    {renderUserCell(user, col)}
-                  </td>
-                ))}
-              </tr>
-            ))
-          )}
+          ))}
         </tbody>
       </table>
     </div>
