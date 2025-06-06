@@ -15,7 +15,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         type="button"
         className={clsx(
-          'inline-flex items-center justify-center rounded-full p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50',
+          'inline-flex items-center justify-center rounded-full p-2 transition-colors focus:outline-none disabled:opacity-50 outline-none cursor-pointer border border-transparent',
           className
         )}
         {...props}
@@ -26,4 +26,4 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   }
 );
 
-IconButton.displayName = 'IconButton'; 
+IconButton.displayName = 'IconButton';

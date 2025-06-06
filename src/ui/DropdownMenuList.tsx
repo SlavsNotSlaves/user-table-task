@@ -46,15 +46,16 @@ export const DropdownMenuList: React.FC<DropdownMenuListProps> = ({
       {[
         ...items.filter(item => !item.disabled),
         ...items.filter(item => item.disabled)
-      ].map(item => (
+      ].map((item) => (
         <li
           key={item.key}
+          style={{ padding: '6px 0px' }}
           className={[
             'flex items-center justify-between px-0 py-2 rounded-lg text-[13px] leading-[20px] font-plex font-normal select-none transition-colors',
             item.disabled
               ? 'text-[#5F6E7C] cursor-not-allowed bg-transparent'
               : 'text-[#202932] cursor-pointer hover:bg-blue-50 active:bg-blue-100',
-            'focus:bg-blue-50'
+            'focus:bg-blue-50',
           ].join(' ')}
           tabIndex={item.disabled ? -1 : 0}
           aria-disabled={item.disabled}

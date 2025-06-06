@@ -10,7 +10,9 @@ const UserSearch = ({ value, onChange }: UserSearchProps) => {
     <div className="w-full py-4 mt-32" style={{marginTop: '32px'}}>
       <SearchInput
         value={value}
-        onChange={onChange}
+        onChange={v => {
+          onChange(v);
+        }}
         placeholder="Search..."
         aria-label="Search"
         className="w-full"

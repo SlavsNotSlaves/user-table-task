@@ -52,7 +52,7 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
             onOpenChange={setOpen}
           >
             <Select.Trigger
-              className="border border-[#EAEDF0] rounded-[8px] px-4 h-[36px] w-[88px] flex items-center justify-between text-[13px] font-plex-sans text-[#202932] bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-100 shadow-none relative overflow-hidden gap-2 data-[state=open]:border-2 data-[state=open]:border-blue-500"
+              className="border border-[#EAEDF0] rounded-[8px] px-4 h-[36px] w-[88px] flex items-center justify-between text-[13px] font-plex-sans text-[#202932] bg-white focus:outline-none focus:ring-2 focus:ring-[#005CB2] transition-all duration-100 shadow-none relative overflow-hidden gap-2 data-[state=open]:border-2 data-[state=open]:border-blue-500"
               aria-label="Items per page"
             >
               <Select.Value />
@@ -110,17 +110,15 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
           onClick={() => setPage(1)}
           disabled={page === 1}
           aria-label="First page"
-          className="border border-[#EAEDF0]"
         >
-          <IconCaret direction="left" variant="line" size={20} />
+          <IconCaret direction="left" variant="line" size={20} className=" text-[#6B7280] transition-colors" />
         </IconButton>
         <IconButton
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
           aria-label="Previous page"
-          className="border border-[#EAEDF0]"
         >
-          <IconCaret direction="left" size={20} />
+          <IconCaret direction="left" size={20} className=" text-[#6B7280] transition-colors" />
         </IconButton>
         <input
           type="number"
@@ -131,24 +129,23 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
             const val = Number(e.target.value);
             if (val >= 1 && val <= pageCount) setPage(val);
           }}
-          className="w-12 border border-[#EAEDF0] rounded text-center text-sm"
+          className="w-[64px] h-[32px] border border-[#EAEDF0] rounded-[8px] text-center text-sm appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none mx-[6px] focus:border-[#005CB2] focus:ring-2 focus:ring-[#005CB2] focus:outline-none  "
           aria-label="Current page"
+          style={{ MozAppearance: 'textfield', borderColor: '#EAEDF0' }}
         />
         <IconButton
           onClick={() => setPage(page + 1)}
           disabled={page >= pageCount}
           aria-label="Next page"
-          className="border border-[#EAEDF0]"
         >
-          <IconCaret direction="right" size={20} />
+          <IconCaret direction="right" size={20} className=" text-[#6B7280] transition-colors" />
         </IconButton>
         <IconButton
           onClick={() => setPage(pageCount)}
           disabled={page >= pageCount}
           aria-label="Last page"
-          className="border border-[#EAEDF0]"
         >
-          <IconCaret direction="right" variant="line" size={20} />
+          <IconCaret direction="right" variant="line" size={20} className=" text-[#6B7280] transition-colors" />
         </IconButton>
       </div>
     </footer>

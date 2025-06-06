@@ -106,8 +106,6 @@ const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading,
                 padding: '0 8px',
                 height: 28,
                 whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
               }}
               className="align-middle text-xs font-semibold text-left bg-[#f7f7f8]"
             >
