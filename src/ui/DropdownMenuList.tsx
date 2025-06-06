@@ -54,11 +54,19 @@ export const DropdownMenuList: React.FC<DropdownMenuListProps> = ({
           onClick={() => !item.disabled && onToggle(item.key, !item.checked)}
         >
           <span className="truncate" style={{width: 152}}>{item.label}</span>
-          {item.checked && (
-            <span className="text-blue-600 ml-2 flex-shrink-0">
-              <IconSingleChoice size={18} color="#2563eb" />
-            </span>
-          )}
+          <span
+            className={[
+              'flex items-center justify-center ml-2',
+              item.checked ? '' : 'opacity-0',
+              item.disabled ? 'opacity-50' : ''
+            ].join(' ')}
+            aria-hidden="true"
+            style={{ width: 20, height: 20 }}
+          >
+            {item.checked && (
+              <IconSingleChoice size={20} color="#2563eb" />
+            )}
+          </span>
         </li>
       ))}
     </ul>
