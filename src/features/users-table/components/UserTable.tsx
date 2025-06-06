@@ -32,6 +32,10 @@ const COLUMN_LABELS: Record<TableColumn, string> = {
   ssn: 'SSN',
 };
 
+// TODO: NEED TO REFACTOR THIS COMPONENT 
+// renderUserCell should be a separate component
+// inline styles should be moved to tailwind classes
+
 const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading, error }) => {
   if (isLoading || error) {
     return (

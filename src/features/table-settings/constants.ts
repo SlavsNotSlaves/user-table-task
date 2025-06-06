@@ -1,7 +1,12 @@
 import type { TableColumn } from '../../store/types';
 
 // Table columns config for settings and rendering
-export const TABLE_COLUMNS: { key: TableColumn; label: string; disabled: boolean; sortKey?: string }[] = [
+export const TABLE_COLUMNS: {
+  key: TableColumn;
+  label: string;
+  disabled: boolean;
+  sortKey?: string;
+}[] = [
   { key: 'fullName', label: 'Full name', disabled: true, sortKey: 'firstName' },
   { key: 'birthDate', label: 'Birthday', disabled: false, sortKey: 'birthDate' },
   { key: 'gender', label: 'Gender', disabled: false, sortKey: 'gender' },

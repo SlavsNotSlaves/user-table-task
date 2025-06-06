@@ -18,9 +18,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   align = 'end',
 }) => (
   <DropdownMenuPrimitive.Root>
-    <DropdownMenuPrimitive.Trigger asChild>
-      {trigger}
-    </DropdownMenuPrimitive.Trigger>
+    <DropdownMenuPrimitive.Trigger asChild>{trigger}</DropdownMenuPrimitive.Trigger>
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
         align={align}

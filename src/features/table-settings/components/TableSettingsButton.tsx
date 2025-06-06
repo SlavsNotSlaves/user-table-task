@@ -6,14 +6,11 @@ import { IconGear } from '@/ui/icons';
 
 const TableSettingsButton = () => {
   const [search, setSearch] = useState('');
-  const {
-    visibleColumns,
-    setVisibleColumns,
-  } = useTableSettingsStore();
+  const { visibleColumns, setVisibleColumns } = useTableSettingsStore();
 
   const filtered = useFilteredColumns(search);
 
-  const items = filtered.map(col => ({
+  const items = filtered.map((col) => ({
     key: col.key,
     label: col.label,
     checked: visibleColumns.includes(col.key),
@@ -36,13 +33,13 @@ const TableSettingsButton = () => {
       <DropdownMenuList
         items={items}
         onToggle={(key, checked) => {
-          const col = filtered.find(c => c.key === key);
+          const col = filtered.find((c) => c.key === key);
           if (!col || col.disabled) return;
           const colKey = key as import('@store/types').TableColumn;
           if (checked) {
             setVisibleColumns([...visibleColumns, colKey]);
           } else {
-            setVisibleColumns(visibleColumns.filter(c => c !== colKey));
+            setVisibleColumns(visibleColumns.filter((c) => c !== colKey));
           }
         }}
         searchValue={search}

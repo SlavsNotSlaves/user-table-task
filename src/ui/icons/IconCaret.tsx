@@ -14,9 +14,10 @@ export const IconCaret = ({
   size?: number;
   color?: string;
 }) => {
-  const path = variant === 'default' 
-    ? "M7.5 4.5L12.5 9.5L7.5 14.5"
-    : "M12 10.4142V16H14L14 4H12V9.58576L11.7071 9.29286L7.20706 4.79286L5.79285 6.20708L9.58574 9.99997L5.79285 13.7929L7.20706 15.2071L11.7071 10.7071L12 10.4142Z";
+  const path =
+    variant === 'default'
+      ? 'M7.5 4.5L12.5 9.5L7.5 14.5'
+      : 'M12 10.4142V16H14L14 4H12V9.58576L11.7071 9.29286L7.20706 4.79286L5.79285 6.20708L9.58574 9.99997L5.79285 13.7929L7.20706 15.2071L11.7071 10.7071L12 10.4142Z';
 
   return (
     <svg
@@ -37,13 +38,8 @@ export const IconCaret = ({
           strokeLinejoin="round"
         />
       ) : (
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d={path}
-          fill={color}
-        />
+        <path fillRule="evenodd" clipRule="evenodd" d={path} fill={color} />
       )}
     </svg>
   );
-}; 
+};

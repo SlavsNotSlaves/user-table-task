@@ -7,10 +7,10 @@ interface UserSearchProps {
 
 const UserSearch = ({ value, onChange }: UserSearchProps) => {
   return (
-    <div className="w-full py-4 mt-32" style={{marginTop: '32px'}}>
+    <div className="w-full py-4 mt-32" style={{ marginTop: '32px' }}>
       <SearchInput
         value={value}
-        onChange={v => {
+        onChange={(v) => {
           onChange(v);
         }}
         placeholder="Search..."

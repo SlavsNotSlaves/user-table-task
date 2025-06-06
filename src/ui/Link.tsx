@@ -20,8 +20,8 @@ const Link: React.FC<LinkProps> = ({ domain }) => {
         verticalAlign: 'middle',
         transition: 'color 0.15s',
       }}
-      onMouseOver={e => (e.currentTarget.style.color = '#003A75')}
-      onMouseOut={e => (e.currentTarget.style.color = '#005CB2')}
+      onMouseOver={(e) => (e.currentTarget.style.color = '#003A75')}
+      onMouseOut={(e) => (e.currentTarget.style.color = '#005CB2')}
     >
       {domain}
     </a>
