@@ -19,7 +19,7 @@ const SelectItem = React.forwardRef<
 >(({ children, className, ...props }, ref) => (
   <Select.Item
     className={
-      "flex items-center px-4 py-2 text-[13px] font-plex-sans text-[#202932] cursor-pointer rounded-[8px] data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600 data-[highlighted]:bg-[#F5F7FA] data-[disabled]:text-gray-300 data-[disabled]:cursor-not-allowed outline-none select-none"
+      "flex items-center px-2 h-[36px] text-[13px] font-plex-sans text-[#202932] cursor-pointer rounded-[8px] data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600 data-[highlighted]:bg-[#F5F7FA] data-[disabled]:text-gray-300 data-[disabled]:cursor-not-allowed outline-none select-none"
     }
     {...props}
     ref={ref}
@@ -44,8 +44,8 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
   return (
     <footer className="w-full flex justify-between items-center border-t border-[#EAEDF0] px-6 py-4 bg-white">
       {/* Items per page */}
-      <div className="flex items-center gap-2">
-        <div className="relative">
+      <div className="flex items-center justify-between gap-4">
+        <div className="relative" style={{ marginRight: '10px' }}>
           <Select.Root
             value={String(limit)}
             onValueChange={(v: string) => setLimit(Number(v))}
@@ -53,23 +53,36 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
             onOpenChange={setOpen}
           >
             <Select.Trigger
-              className="border border-[#EAEDF0] rounded-[8px] px-4 h-[36px] w-[88px] flex items-center justify-between text-[13px] font-plex-sans text-[#202932] bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-100 shadow-none relative"
+              className="border border-[#EAEDF0] rounded-[8px] px-4 h-[36px] w-[88px] flex items-center justify-between text-[13px] font-plex-sans text-[#202932] bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-100 shadow-none relative overflow-hidden gap-2 data-[state=open]:border-2 data-[state=open]:border-blue-500"
               aria-label="Items per page"
             >
               <Select.Value />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                {open ? (
-                  <IconTriangleUp size={20} color="#202932" />
-                ) : (
-                  <IconTriangleDown size={20} color="#202932" />
-                )}
-              </span>
+              {open ? (
+                <IconTriangleUp size={20} color="#005CB2" />
+              ) : (
+                <IconTriangleDown size={20} color="#005CB2" />
+              )}
             </Select.Trigger>
             <Select.Portal>
-              <Select.Content className="rounded-[12px] border border-[#EAEDF0] bg-white shadow-lg mt-2 z-50 min-w-[88px] w-full animate-fadeIn">
-                <Select.Viewport className="py-2">
+              <Select.Content
+                style={{
+                  minWidth: 88,
+                  width: 88,
+                  background: '#fff',
+                  borderRadius: 12,
+                  boxShadow: '0 4px 24px 0px rgba(37,45,52,0.10)',
+                  zIndex: 50,
+                  overflow: 'hidden',
+                }}
+                className="border border-[#EAEDF0] animate-fadeIn"
+                position="popper"
+                side="bottom"
+                align="start"
+                sideOffset={2}
+              >
+                <Select.Viewport>
                   {limits.map((l) => (
-                    <SelectItem key={l} value={String(l)}>
+                    <SelectItem key={l} value={String(l)} style={{ padding: '0px 6px' }}>
                       {l}
                     </SelectItem>
                   ))}
@@ -78,9 +91,11 @@ export const PaginationFooter: React.FC<PaginationProps> = ({
             </Select.Portal>
           </Select.Root>
         </div>
-        <span className="text-xs text-[#6B7280] font-medium uppercase tracking-wide">
+        <div >
+          <span className="text-xs text-[#6B7280] font-medium uppercase tracking-wide">
           Items per page
         </span>
+        </div>
       </div>
 
       {/* Range info */}

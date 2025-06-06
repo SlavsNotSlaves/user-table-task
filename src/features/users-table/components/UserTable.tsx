@@ -33,14 +33,14 @@ const COLUMN_LABELS: Record<TableColumn, string> = {
 const UserTable: React.FC<UserTableProps> = ({ users, visibleColumns, isLoading, error }) => {
   if (isLoading || error) {
     return (
-      <div className="flex-1 min-h-0 flex items-center justify-center" style={{ minHeight: 300 }}>
+      <div className="min-h-0 flex items-center justify-center" style={{ height: 560 }}>
         <TableStatus status={isLoading ? 'loading' : 'error'} colSpan={visibleColumns.length} />
       </div>
     );
   }
 
   return (
-    <div style={{ height: 550, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8  }}>
+    <div style={{ height: 560, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8  }}>
       <table style={{ minWidth: 900, borderCollapse: 'separate' }} className="min-w-full">
         <thead style={{ position: 'sticky', top: 0, zIndex: 10 }}>
           <tr>
