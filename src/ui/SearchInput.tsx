@@ -1,4 +1,3 @@
-import { TextField } from '@radix-ui/themes';
 import { IconSearch } from './icons/IconSearch';
 import { clsx } from 'clsx';
 
@@ -23,23 +22,29 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   ...rest
 }) => (
   <div className={clsx('w-full', className)}>
-   <TextField.Root
-        size="3"
-        radius="large"
-        variant="surface"
-        className="w-full"
+    <div className="relative w-full">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5F6E7C] w-5 h-5 flex items-center justify-center pointer-events-none">
+        <IconSearch size={20} />
+      </span>
+      <input
+        type="text"
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
         disabled={disabled}
+        className={clsx(
+          'w-full h-9 pl-10 pr-3 rounded-[8px] border border-[#EAEDF0] bg-[#F9FAFB] text-[15px] leading-[20px] font-plex font-normal placeholder:text-[#5F6E7C] placeholder:font-plex placeholder:font-normal placeholder:text-[13px] placeholder:leading-[20px] focus:outline-none focus:ring-2 focus:ring-blue-200 transition-shadow',
+          disabled && 'opacity-60 cursor-not-allowed',
+          error && 'border-[#E40808] text-[#E40808] placeholder-[#E40808]'
+        )}
+        style={{ height: 36 }}
         {...rest}
->
-  <TextField.Slot side="left">
-    <IconSearch size={18} className={clsx('text-gray-400', disabled && 'text-gray-300')} />
-  </TextField.Slot>
-  </TextField.Root>
+      />
+    </div>
     {error && errorText && (
-      <div className="mt-1 text-[8px] leading-[20px] text-[#E40808] font-plex">{errorText}</div>
+      <div className="mt-1 text-[8px] leading-[20px] text-[#E40808] font-plex">
+        {errorText}
+      </div>
     )}
   </div>
-); 
+);

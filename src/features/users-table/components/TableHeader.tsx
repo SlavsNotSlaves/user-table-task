@@ -1,6 +1,5 @@
 import React from 'react';
 import { TableSettingsButton } from '@features/table-settings/components';
-import { Text } from '@radix-ui/themes';
 
 interface TableHeaderProps {
   label: string;
@@ -16,9 +15,9 @@ export const TableHeader: React.FC<TableHeaderProps> = ({ label, width }) => (
     style={{ width, maxWidth: width, minWidth: width, height: 28 }} 
     className="px-4 py-2 text-left border-b align-middle bg-gray-50"
   >
-    <Text as="span" size="1" weight="bold" className="uppercase tracking-[0.02em] font-plex text-[#5F6E7C]">
+    <span className="uppercase tracking-[0.02em] font-plex text-[#5F6E7C]">
       {label}
-    </Text>
+    </span>
   </div>
 );
 

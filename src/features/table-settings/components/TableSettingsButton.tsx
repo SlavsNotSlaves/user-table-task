@@ -30,8 +30,8 @@ const TableSettingsButton = () => {
           <IconGear size={20} />
         </IconButton>
       }
-      sideOffset={5}
       align="end"
+      sideOffset={5}
     >
       <DropdownMenuList
         items={items}
